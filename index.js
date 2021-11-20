@@ -25,10 +25,11 @@ const envs = {
   touchDevice: is.touchDevice(),
 };
 
-const currentEnv = Object.keys(envs).reduce((obj, property) => {
-  if (envs[property]) obj[property] = envs[property];
-  return obj;
-}, {});
+const currentEnv = {};
+
+for (let property in envs) {
+  if (envs[property]) currentEnv[property] = true;
+}
 
 document.querySelector('.browserName').innerText = JSON.stringify(
   currentEnv,
